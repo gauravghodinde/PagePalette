@@ -174,6 +174,7 @@ const Home = () => {
             type="button"
             onClick={() => {
               ToggleDropDown(!dropdown);
+              ToggleDropDown2(false);
             }}
           >
             Model {models[modelno]} {" "}
@@ -211,6 +212,7 @@ const Home = () => {
                         console.log(index)
                         setmodelno(index);
                         ToggleDropDown((dropdown) => !dropdown);
+
                       }}
                       className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                     >
@@ -238,6 +240,7 @@ const Home = () => {
             type="button"
             onClick={() => {
               ToggleDropDown2(!dropdown2);
+              ToggleDropDown(false);
             }}
           >
             Model {epubs[bookno]} {" "}
