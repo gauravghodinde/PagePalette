@@ -163,7 +163,7 @@ const Home = () => {
           }}
         />
       </div>
-      <div className="m-6 flex justify-around pb-16">
+      <div className="m-6 flex flex-wrap justify-around pb-16">
         {/* <button className="px-6 m-2 py-3 bg-yellow-600 dark:bg-teal-700 hover:bg-slate-800 hover:dark:bg-teal-800 rounded text-white">
           choose model
         </button> */}
