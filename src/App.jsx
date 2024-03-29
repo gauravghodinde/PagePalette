@@ -9,7 +9,7 @@ const App = () => {
   return (
     <div className="bg-white border-gray-200 dark:bg-teal-950 dark:text-white">
       <Navbar />
-      {page ? <Landing /> : <Home />}
+      <Home />
       <Footer/>
     </div>
   );

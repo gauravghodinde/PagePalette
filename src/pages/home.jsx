@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { ReactReader } from "react-reader";
 import close from "../images/close.png";
-import gita from "../books/gita.epub"
+
+import percyjackson from "../books/percyjackson.epub"
+
+import gameofthrones from "../books/gameofthrones.epub"
 import harrypotter from "../books/harrypotter.epub"
 import mahabharat from "../books/mahabharat.epub"
 // import { client } from "@gradio/client";
@@ -13,7 +16,8 @@ const Home = () => {
   const [send, setSend] = useState(false);
   const [dropdown, ToggleDropDown] = useState(false);
   const [modelno, setmodelno] = useState(0);
-
+  const [dropdown2, ToggleDropDown2] = useState(false);
+  const [bookno, setbookno] = useState(0);
   var models = [
     
     "blink7630/graphic-novel-illustration",
@@ -22,6 +26,12 @@ const Home = () => {
     "EarthnDusk/Poltergeist-Mix",
     "SaiRaj03/Text_To_Image",
     "nerijs/pixel-art-xl",
+  ];
+  var epubs = [
+    mahabharat,
+    harrypotter,
+    gameofthrones,
+    percyjackson,
   ];
   
   useEffect(() => {
@@ -141,7 +151,7 @@ const Home = () => {
 
       <div style={{ height: "80vh" }} className="m-6">
         <ReactReader
-          url= {mahabharat} // "https://react-reader.metabits.no/files/alice.epub"
+          url= {epubs[bookno]} // "https://react-reader.metabits.no/files/alice.epub"
           location={location}
           locationChanged={(epubcfi) => setLocation(epubcfi)}
           epubOptions={{
@@ -218,9 +228,64 @@ const Home = () => {
         >
           send
         </button>
-        <button className="px-6 m-2 py-3 bg-yellow-600 dark:bg-teal-700 hover:bg-slate-800 hover:dark:bg-teal-800 rounded text-white">
+        {/* <button className="px-6 m-2 py-3 bg-yellow-600 dark:bg-teal-700 hover:bg-slate-800 hover:dark:bg-teal-800 rounded text-white">
           choose epub
-        </button>
+        </button> */}
+        <div className="relative">
+          <button
+            id="dropdownDefaultButton"
+            className="text-white px-6 m-2 py-3 bg-yellow-600 dark:bg-teal-700 hover:bg-slate-800 hover:dark:bg-teal-800 rounded  focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium  text-sm px-5 py-2.5 text-center inline-flex items-center "
+            type="button"
+            onClick={() => {
+              ToggleDropDown2(!dropdown2);
+            }}
+          >
+            Model {epubs[bookno]} {" "}
+            <svg
+              className="w-2.5 h-2.5 ms-3"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 10 6"
+            >
+              <path
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="m1 1 4 4 4-4"
+              />
+            </svg>
+          </button>
+
+          <div
+            className={`z-10 absolute ${
+              dropdown2 || "hidden"
+            } bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700`}
+          >
+            <ul
+              className="py-2 text-sm text-gray-700 dark:text-gray-200"
+              aria-labelledby="dropdownDefaultButton"
+            >
+              {epubs.map((item, index) => {
+                return (
+                  <li key={index}>
+                    <button
+                      onClick={() => {
+                        console.log(index)
+                        setbookno(index);
+                        ToggleDropDown2((dropdown2) => !dropdown2);
+                      }}
+                      className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                    >
+                      {item}
+                    </button>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        </div>
       </div>
       <div className="flex flex-wrap p-6 m-6">
         {image
